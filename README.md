@@ -6,10 +6,22 @@ Welcome to the repository for **MSc Data Science Winter Semester Lab Works** at 
 
 ## 📁 Directory Structure
 
-### 1. 🛠️ [Data Mining Labs](./Data_mining_lab)
+### 1.  [Data Mining Labs](./Data_mining_lab)
 
 ---
-### 2. 🧮 [Exploratory Data Analysis (EDA) Labs](./EDA_lab)
+### 2.  [Exploratory Data Analysis (EDA) Lab](./EDA_lab)
+
+---
+### 3.  [Financial Analytics Lab](./Financial_Analytics_lab)
+
+---
+### 4.  [Regression Analysis and Predictive Models Lab](./Regression_analysis_predictive_models_lab)
+
+---
+### 5.  [Statistical Inference Lab](./Statistical_Inference_Lab)
+
+---
+### 6.  [Advanced competitive Coding](./Advanced_competitive_coding)
 
 ---
 
