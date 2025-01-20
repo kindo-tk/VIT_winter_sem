@@ -3,7 +3,8 @@
  * Time complexity O(root(n))
  */
 import java.util.*;
- public class Euler_phi_better_approach {
+public class Euler_phi_better_approach 
+{
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
