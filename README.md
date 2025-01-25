@@ -41,6 +41,7 @@ I'm a Mathematics graduate currently pursuing a Master's in Data Science at VIT.
 - Python: NumPy, Pandas, Scikit-learn, Matplotlib, Seaborn
 - R: For statistical analysis and visualization
 - Jupyter Notebooks: Interactive code and visualization
+- Java : For implementing different algorithms 
 
 
 ## 📢 Feedback
