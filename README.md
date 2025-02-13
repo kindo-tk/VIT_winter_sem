@@ -41,8 +41,10 @@ I'm a Mathematics graduate currently pursuing a Master's in Data Science at VIT.
 - Python: NumPy, Pandas, Scikit-learn, Matplotlib, Seaborn
 - R: For statistical analysis and visualization
 - Jupyter Notebooks: Interactive code and visualization
-- Java : For implementing different algorithms 
+- Java: For implementing different algorithms 
 
+## ⭐ Support the Effort
+If you find this repository useful, consider giving it a star ⭐! Your support motivates me to keep updating and improving the content.
 
 ## 📢 Feedback
 Have suggestions or found a bug? Feel free to open an issue or submit a pull request.
