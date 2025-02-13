@@ -1,0 +1,122 @@
+\documentclass{article}
+
+\begin{document}
+
+\title{Statistical Moments and Measures of Central Tendency}
+\author{Tufan Kundu}
+\date{13 February, 2025}
+\maketitle
+
+\section{Problem 1: Moments Calculation}
+Twenty students, both graduates and undergraduates, were enrolled in a statistics course. Their ages were:
+\begin{center}
+18, 19, 19, 19, 19, 20, 20, 20, 20, 20, 21, 21, 21, 21, 22, 23, 24, 27, 30, 36.
+\end{center}
+Find the moments, $\beta_1$, $\beta_2$, $\gamma_1$, and $\gamma_2$.
+
+<<>>=
+x<- c(18,19,19,19,19,20,20,20,20,20,21,21,21,21,22,23,24,27,30,36)
+moments<-function(x)
+{
+  l = length(x) # total number of observations
+  s = sum(x)
+  m1 <- round((s/l),2)
+  print(paste("Mean is:", m1))
+  
+  m2 <- round((sum((x-m1)^2)/l),2)   # Second central moment
+  print(paste("Second central moment is:", m2))
+  
+  m3<- round((sum((x-m1)^3)/l),2)    # Third central moment
+  print(paste("Third central moment is:", m3))
+  
+  m4<- round((sum((x-m1)^4)/l),2)   # Fourth central moment
+  print(paste("Fourth central moment is:", m4))
+  
+  beta1 <- round((m3^2/m2^3),2)
+  print(paste("Beta1 is:", beta1))
+  
+  beta2 <- round((m4/m2^2),2)
+  print(paste("Beta2 is:", beta2))
+  
+  gamma1 <- round(sqrt(beta1),2)
+  print(paste("Gamma1 is:", gamma1))
+  
+  gamma2 <- round((beta2-3),2)
+  print(paste("Gamma2 is:", gamma2))
+}
+moments(x)
+@
+
+\section{Problem 2: Measures of Central Tendency for a Frequency Table}
+A survey of 25 faculty members in a college was conducted to study their vocational mobility. They were asked:
+\begin{quote}
+"In addition to your present position, at how many educational institutes have you served on the faculty?"
+\end{quote}
+The frequency distribution of their responses is as follows:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{x} & 0 & 1 & 2 & 3 \\
+\hline
+\textbf{f} & 8 & 11 & 5 & 1 \\
+\hline
+\end{tabular}
+\end{center}
+
+Find the mean and median of the distribution.
+
+<<>>=
+moment<-function(x,f)
+{
+  sum_xifi<- sum(x*f)
+  sum_fi<- sum(f)
+  mean<- sum_xifi/sum_fi
+  print(paste("Mean is:", mean))
+}
+
+x<-c(0,1,2,3)
+f<-c(8,11,5,1)
+moment(x,f)
+@
+
+\section{Problem 3: Moments for Continuous Variables}
+
+<<>>=
+moments_cont <- function(l,u,f) # Lower bound, upper bound, frequency 
+{
+  mid <- (l+u)/2
+  len<-sum(f)
+  s<- sum(mid*f)
+  mean<- round((s/len),2)
+  print(paste("Mean is:", mean))
+  
+  m2 <- round((sum(((mid-mean)^2*f))/len),2)   # Second order moment
+  print(paste("Second central moment is:", m2))
+  
+  m3<- round((sum(((mid-mean)^3*f))/len),2)    # Third order moment
+  print(paste("Third central moment is:", m3))
+  
+  m4<- round((sum(((mid-mean)^4*f))/len),2)   # Fourth order moment
+  print(paste("Fourth central moment is:", m4))
+  
+  beta1 <- round((m3^2/m2^3),2)
+  print(paste("Beta1 is:", beta1))
+  
+  beta2 <- round((m4/m2^2),2)
+  print(paste("Beta2 is:", beta2))
+  
+  gamma1 <- round(sqrt(beta1),2)
+  print(paste("Gamma1 is:", gamma1))
+  
+  gamma2 <- round((beta2-3),2)
+  print(paste("Gamma2 is:", gamma2))
+}
+
+l<- c(145,150,155,160,165,170,175,180)
+u<- c(150,155,160,165,170,175,180,185)
+f<-c(4,6,28,58,64,30,5,5)
+moments_cont(l,u,f)
+@
+
+\end{document}
