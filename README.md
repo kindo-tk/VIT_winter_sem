@@ -26,7 +26,7 @@ Welcome to the repository for **MSc Data Science Winter Semester Lab Works** at 
 ---
 
 ## 📝 About Me
-I'm a Mathematics graduate currently pursuing a Master's in Data Science at VIT. I'm passionate about:
+I'm a Mathematics graduate currently pursuing Master's in Data Science at VIT. I'm passionate about:
 - 🧠 Solving real-world problems using data
 - 🖥️ Developing machine learning models
 - 📊 Creating impactful visualizations
