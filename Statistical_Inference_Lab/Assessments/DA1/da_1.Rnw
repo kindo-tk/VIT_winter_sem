@@ -1,0 +1,276 @@
+\documentclass{article}
+\begin{document}
+
+\begin{center}
+\large \textbf{Registration Number:} 24MDT0184\\
+\large \textbf{Name:} Tufan Kundu \\
+\large \textbf{Slot:} L23+L24\\
+\large \textbf{Course Code:} PMDS503P \\
+\large \textbf{Course Title:} Statistical Inference Lab \\
+\large \textbf{DA 1} \\
+\end{center}
+
+Q1-Draw the Histogram and Frequency polygon for the following data:  
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{cc}
+        C.I. & Frequency \\
+        \hline
+        500-600  & 3  \\
+        600-700  & 5  \\
+        700-800  & 14 \\
+        800-900  & 25 \\
+        900-1000 & 68 \\
+        1000-1100 & 41 \\
+        1100-1200 & 43 \\
+        1200-1300 & 8  \\
+        1300-1400 & 6  \\
+        1400-1500 & 2  \\
+    \end{tabular}
+\end{table}
+
+<<>>=
+# Defining the upper bound, lower bound and frequency
+lower_bounds<- c(500,600,700,800,900,1000,1100,1200,1300,1400)
+upper_bounds<- c(600,700,800,900,1000,1100,1200,1300,1400,1500)
+frequencies <- c(3, 5, 14, 25, 68, 41, 43, 8, 6, 2)
+
+# calculating the midpoints of the class intervals
+midpoints <-  (lower_bounds+upper_bounds)/ 2
+
+# Plotting the histogram
+hist(rep(midpoints, frequencies),col = "darkgreen",
+     main = "Histogram of Given Data", xlab = "Class Intervals", ylab = "Frequency",
+     border = "black")
+
+# Plotting frequency polygon on top of the histogram
+lines(midpoints, frequencies, type = "o", col = "red", lwd = 2)
+
+@
+
+Q2.Import a Multivariable dataset from the datasets/MASS package and plot the 
+following: 
+ 
+(i) Display the number of variables in the dataset 
+
+(ii) Draw a box plot for any two variables. 
+
+(iii) Scatterplot for any two variables 
+
+(iv) Multiple bar diagram(with different color) 
+
+(v) Write your observations. 
+
+Note: Add the labels for X-Axis, Y-Axis and Title of the diagram.
+    
+<<>>=
+library(datasets)
+
+# Loading the mtcars dataset
+data(mtcars)
+
+# Display number of variables and variable names
+num_variables <- ncol(mtcars)  # Number of variables
+variable_names <- colnames(mtcars)  # Display variable names
+
+# --------------------------------------
+# (i) Display the number of variables in the dataset 
+# --------------------------------------
+print(paste("Number of variables:", num_variables))
+print("Variable names:")
+print(variable_names)
+
+# display the first few rows of the dataset
+print(head(mtcars))
+
+# --------------------------------------
+# (ii) Draw a box plot for any two variables. 
+# Boxplot: Horsepower vs. Cylinders
+# --------------------------------------
+boxplot(hp ~ cyl, data = mtcars,
+        col = c("red", "blue", "green"),
+        main = "Boxplot of Horsepower by Cylinders",
+        xlab = "Number of Cylinders",
+        ylab = "Horsepower")
+
+# -----------------------------------------
+# (iii) Scatterplot for any two variables
+# Scatter Plot: Weight vs. Miles Per Gallon
+# -----------------------------------------
+plot(mtcars$wt, mtcars$mpg,  
+     col = "blue", pch = 16,
+     main = "Scatter Plot: Weight vs. MPG",
+     xlab = "Car Weight (1000 lbs)",  
+     ylab = "Miles Per Gallon (MPG)")
+
+# -----------------------------------------------
+# (iv) Multiple bar diagram: Cylinders vs. Gears
+# -----------------------------------------------
+barplot(table(mtcars$cyl, mtcars$gear), beside = TRUE,  
+        col = c("red", "blue", "green"),  
+        main = "Cylinders vs. Gear Count",
+        xlab = "Gear Count",
+        ylab = "Number of Cars",
+        legend = c("4 Cyl", "6 Cyl", "8 Cyl"))
+
+#-----------------------------------------------
+# (v) Write your observations
+#-----------------------------------------------
+print("Observations for the mtcars dataset:")
+print("1. The dataset contains 11 variables representing different characteristics of 32 cars.")
+print("2. Scatter Plot (Weight vs. MPG): As car weight increases, MPG decreases.")
+print("3. Box Plot (Horsepower vs. Cylinders): 8-cylinder cars have the highest horsepower.")
+print("4. Multiple Bar Diagram (Cylinders vs. Gear Count):")
+print("   - Most 8-cylinder cars have 3 gears.")
+print("   - 4-cylinder cars are more common with 4 or 5 gears.")
+print("   - 6-cylinder cars are mainly associated with 4 gears.")
+print("5. Heavier cars tend to be less fuel-efficient.")
+print("6. Higher cylinder count is associated with more power but lower fuel efficiency.")
+@
+
+Q3. From the data set given below, obtain the descriptive statistics for each variable and write your observations on the performance of students. 
+
+<<>>=
+# loading the data from csv file
+df <- read.csv("D:\\study material\\VIT_Data_Science\\Winter_Sem\\Statistical_Inference_Lab\\DA\\DA1\\data.csv")
+
+# displaying the first few rows of the data
+head(df)
+
+# User defined function to calculate the descriptive statistics
+
+# Minimum
+min_value <- function(x)
+{
+  return(sort(x)[1])
+}
+
+# Maximum
+max_value <- function(x)
+{
+  return(sort(x, decreasing = TRUE)[1])
+}
+
+# Mean
+mean_value <- function(x)
+{
+  return(sum(x)/length(x))
+}
+
+# variance
+variance_value <- function(x)
+{
+  return(sum((x-mean_value(x))^2)/(length(x)-1))
+}
+
+# Standard Deviation
+sd_value <- function(x)
+{
+  return(sqrt(variance_value(x)))
+}
+
+# Quartiles
+quartiles<- function(x)
+{
+  x<- sort(x)   # sorting the data
+  n<- length(x) # length of the data
+  
+  # Finding the position of the quartiles
+  q1_pos <- (n+1)/4
+  q2_pos <- (n+1)/2
+  q3_pos <- 3*(n+1)/4
+  
+  # Function to interpolate for non-integer positions
+  interpolate <- function(pos)
+  {
+    lower <- floor(pos)
+    upper <- ceiling(pos)
+    if(lower==upper) # i.e if the position is an integer
+    {
+      return (x[lower])
+    }
+    else
+    {
+      return (x[lower]+(pos-lower)*(x[upper]-x[lower]))
+    }
+  }
+  
+  # computing the quartile values
+  q1<- interpolate(q1_pos)
+  q2<- interpolate(q2_pos)
+  q3<- interpolate(q3_pos)
+  
+  return (c(Q1=q1,Median=q2,Q3=q3))
+}
+
+# Third moment
+third_moment<- function(x)
+{
+  return(sum((x - mean_value(x))^3) / length(x))
+}
+
+# Fourth moment
+fourth_moment<- function(x)
+{
+  return(sum((x - mean_value(x))^4) / length(x))
+}
+
+# Beta1
+beta1<- function(x)
+{
+  return (third_moment(x)^2/(variance_value(x)^3))
+}
+
+# Beta2
+beta2<- function(x)
+{
+  return (fourth_moment(x)/(variance_value(x)^2))
+}
+
+#Gamma1
+gamma1<- function(x)
+{
+  return (sqrt(beta1(x)))
+}
+
+#Gamma2
+gamma2<- function(x)
+{
+  return (beta2(x)-3)
+}
+
+# Applying function to each numerical column
+results_df <- data.frame(Measure = c("Min", "Max", "Mean", "Variance", "SD", 
+                                     "Q1", "Q2 (Median)", "Q3", "Third Moment", 
+                                     "Fourth Moment", "Beta1", "Beta2", "Gamma1", "Gamma2"))
+
+# Looping through each column and calculating statistics
+for (col in colnames(df)) {
+  data_col <- df[[col]]
+  
+  # Compute the statistics
+  stats <- round(c(min_value(data_col),
+             max_value(data_col),
+             mean_value(data_col),
+             variance_value(data_col),
+             sd_value(data_col),
+             quartiles(data_col)["Q1"],
+             quartiles(data_col)["Median"],
+             quartiles(data_col)["Q3"],
+             third_moment(data_col),
+             fourth_moment(data_col),
+             beta1(data_col),
+             beta2(data_col),
+             gamma1(data_col),
+             gamma2(data_col)),2)
+  
+  # Append results as a new column
+  results_df[[col]] <- stats
+}
+
+# Print the final table
+print(results_df)
+
+@
+\end{document}
