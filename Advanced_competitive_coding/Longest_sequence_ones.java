@@ -1,7 +1,7 @@
 /**
  * Given a binary array, find the length of the longest sequence of 1’s formed by replacing at-most k zeroes by ones.
  * Eg: [1,1,0,0,1,1,1,0,1,1] k=2
- * Output: 6
+ * Output: 7
  */
 import java.util.*;
 public class Longest_sequence_ones 

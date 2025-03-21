@@ -28,7 +28,7 @@ public class Nibble_swap
         System.out.print("Enter a number:");
         int num = sc.nextInt();
         int swap;
-        swap = ((num & 0x0F)<<4|(num & 0xfF)>>4);
+        swap = ((num & 0x0F)<<4|(num & 0xF0)>>4);
         System.out.printf("\nOriginal number:%d",num);
         System.out.printf("\nAfter swapping nibble:%d",swap);
     }    
