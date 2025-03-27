@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\begin{document}
+
+\begin{center}
+\large\textbf{Registration Number:}24MDT0184\\
+\large\textbf{Name:}Tufan Kundu\\
+\large\textbf{Slot:}L23+L24\\
+\large\textbf{Course Code:}PMDS503P\\
+\large\textbf{Course Title:}Statistical Inference Lab\\
+\large\textbf{DA4}\\
+\end{center}
+
+\textbf{Q1:}
+Printed circuit cards are placed in a functional test after being populated with semiconductor
+chips. A lot contains 140 cards, and 20 are selected without replacement for functional testing.\\
+(a) If 20 cards are defective, what is the probability that at least 1 defective card is in
+ the sample?
+<<>>=
+#Given
+total_cards<-140
+samplesize<-20
+defective<-20
+# Probability of no defective card 
+p_no_defective <- dhyper(0,defective,total_cards-defective,samplesize)
+# probability of atleast 1 defective card 
+p_atleast_1_defective <- 1 - p_no_defective
+cat("Probability of at least 1 defective card:", p_atleast_1_defective)
+@
+(b) If 5 cards are defective, what is the probability that at least 1 defective card appears
+ in the sample?
+<<>>=
+defective<- 5
+p_no_defective <- dhyper(0,defective,total_cards-defective,samplesize)
+p_atleast_1_defective <- 1 - p_no_defective
+cat("Probability of at least 1 defective card:", p_atleast_1_defective)
+@
+\textbf{Q2:}
+The number of failures of a testing instrument from contamination particles on the
+product is a Poisson random variable with a mean of 0.02 failure per hour.\\
+(a) What is the probability that the instrument does not fail in an 8-hour shift?
+<<>>=
+lambda<- 0.02
+prob_no_fail_8<-dpois(0,lambda*8)
+cat("Probability of no failure in 8 hours:",prob_no_fail_8)
+@
+(b) What is the probability of at least one failure in a 24-hour day?
+<<>>=
+prob_atleast_1_24<-1-dpois(0,lambda*24)
+cat("Probability of at least 1 failure in 24 hours:",prob_atleast_1_24)
+@
+\textbf{Q3:}
+The thickness of a laminated covering for a wood surface is normally distributed with a
+mean of 5 millimeters and a standard deviation of 0.2 millimeter.\\
+(a) What is the probability that a covering thickness is greater than 5.5 millimeters?
+<<>>=
+mean_thickness<-5
+std_dev<-0.2
+prob_greaterthan_5_5<-1-pnorm(5.5,mean_thickness,std_dev)
+cat("Probability that thickness>5.5mm:",prob_greaterthan_5_5)
+@
+(b) If the specifications require the thickness to be between 4.5 and 5.5 millimeters,
+ what proportion of coverings do not meet specifications?
+<<>>=
+p_within_range <- pnorm(5.5,mean_thickness,std_dev) - pnorm(4.5,mean_thickness,std_dev)
+p_outside_range<- 1- p_within_range
+cat("Proportion of covering that do not meet specifications:",p_outside_range)
+@
+(c) The covering thickness of 95% of samples is below what value?
+<<>>=
+thickness_95<-qnorm(0.95,mean_thickness,std_dev)
+cat("Thickness below which 95% of samples fall:",thickness_95)
+@
+\textbf{Q4:}
+The time between calls is exponentially distributed with a mean time between calls of
+10 minutes.\\
+(a) What is the probability that the time until the first call is less than 5 minutes?
+<<>>=
+mean_time<- 10
+p_less_5<- pexp(5,rate = 1/mean_time)
+cat("Probability that time untill the first call is < 5 minutes:", p_less_5)
+@
+(b) What is the probability that the time until the first call is between 5 and 15 minutes?
+<<>>=
+p_between_5_15 <- pexp(15, rate = 1/mean_time) - pexp(5,rate = 1/mean_time)
+cat("Probability that time until first call is between 5 and 15 minutes:",p_between_5_15)
+@
+(c) Determine the length of an interval of time such that the probability of at least one
+ call in the interval is 0.90.
+<<>>=
+interval_length <- qexp(0.90, rate = 1/mean_time)
+cat("Length of interval where probability of at least 1 call is 0.90:", interval_length)
+@
+\end{document}
