@@ -1,0 +1,73 @@
+\documentclass{article}
+
+\begin{document}
+
+\begin{center}
+\large\textbf{Registration Number:}24MDT0184\\
+\large\textbf{Name:}Tufan Kundu\\
+\large\textbf{Slot:}L23+L24\\
+\large\textbf{Course Code:}PMDS503P\\
+\large\textbf{Course Title:}Statistical Inference Lab\\
+\large\textbf{DA5}\\
+\end{center}
+
+\textbf{Q1:}
+<<>>=
+#H0: Median difference between capiler1 and capiler 2 is 0
+# H1: Median difference is not 0
+# capiler-1 data
+capiler1<- c(0.265,0.265,0.266,0.267,0.267,0.265,0.267,0.267,0.265,0.268,0.268,0.265)
+capiler2<-c(0.264,0.265,0.264,0.266,0.267,0.268,0.264,0.265,0.265,0.267,0.268,0.269)
+result1<- wilcox.test(capiler1,capiler2,paired = TRUE, alternative= "two.sided", exact = FALSE)
+cat("Test statistic:", result1$statistic)
+cat("p-value:", result1$p.value)
+cat("Conclusion: ", ifelse(result1$p.value<0.05,"Reject H0","Fail to reject H0"))
+@
+Conclusion:\\
+There is no significant difference between the medians of the population of measurements represented by the two samples.\\
+\textbf{Q2:}
+<<>>=
+# H0: mu = 8.5
+# H1: mu != 8.5
+# alpha = 0.05
+titanium <- c(8.32, 8.05, 8.93, 8.65, 8.25, 
+              8.46, 8.52, 8.35, 8.36, 8.41, 
+              8.42, 8.30, 8.71, 8.75, 8.60, 
+              8.83, 8.50, 8.38,8.29, 8.46)
+result<- wilcox.test(titanium, mu = 8.5, alternative = "two.sided",exact = FALSE)
+cat("Test Statistic:", result$statistic)
+cat("p-value:", result$p.value)
+cat("Conclusion:",ifelse(result1$p.value<0.05,"Reject H0","Fail to reject H0"))
+@
+Conclusion:\\
+mu = 8.5\\
+\textbf{Q3:}
+<<>>=
+# H0: mu1= mu2
+# H1: mu1> mu2
+# alpha = 0.10
+circuit1<-c(251,255, 258, 257, 250, 251, 254, 250, 248)
+circuit2<-c(250, 253, 249, 256, 259, 252, 260, 251)
+result <- wilcox.test(circuit1,circuit2, alternative = "greater",exact = FALSE)
+cat("Test Statistic:", result$statistic)
+cat("p-value:", result$p.value)
+cat("Conclusion:",ifelse(result1$p.value<0.10,"Reject H0","Fail to reject H0"))
+@
+Conclusion:\\
+mu1 = mu2\\
+\textbf{Q4:}
+<<>>=
+# H0: Data fits normal distribution N(mu = 10.5, sigma = 0.15)
+# H1: Data does not fit normal distribution N(mu = 10.5, sigma = 0.15)
+wire<-c(10.4, 10.6, 10.1, 10.3, 10.2, 10.9, 
+        10.5, 10.8, 10.6, 10.5, 10.7, 10.2, 10.7, 10.3, 10.4, 10.5)
+mu<- 10.5
+sigma<-0.15
+result <- ks.test(wire,"pnorm", mean = mu, sd = sigma)
+cat("Test Statistic:", result$statistic)
+cat("p-value:", result$p.value)
+cat("Conclusion:",ifelse(result1$p.value<0.05,"Reject H0","Fail to reject H0"))
+@
+Conclusion:\\
+Data fits normal distribution N(mu = 10.5, sigma = 0.15)\\
+\end{document}
