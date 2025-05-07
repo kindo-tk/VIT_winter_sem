@@ -52,6 +52,16 @@ I'm passionate about:
 
 ---
 
+## 📚 Previous Year Question Papers
+
+To support others on the same journey, I’ve shared **previous year question papers** from both the *Fall* and *Winter* semesters of the course. These can be helpful for revision, understanding exam patterns, or simply getting a sense of what to expect.
+
+📄 [Click here to access the question papers](https://drive.google.com/file/d/1P1jZMbezmokwNL4wRbet1CpkWRahs-Gx/view?usp=sharing)
+
+Feel free to download and use them for academic purposes. Hope it helps!
+
+---
+
 ## ⭐ Support the Effort
 If you find this repository helpful or appreciate the work, please give it a ⭐! Your support motivates me to keep learning and sharing.
 
